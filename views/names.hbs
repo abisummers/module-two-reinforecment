@@ -1,0 +1,11 @@
+<h2>A list of names</h2>
+
+{{#each userDoc}}
+<ul>
+  <li>
+    {{this.firstName}}
+    <a href="/details/{{this._id}}">See Details</a>
+    <a href="/edit/{{this._id}}">Edit</a>
+  </li>
+</ul>
+{{/each}}

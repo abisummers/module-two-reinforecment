@@ -1,0 +1,15 @@
+<h2>Edit Form</h2>
+
+<form action="/process-edit/{{userDoc.0._id}}" method="POST">
+
+
+  <label>First Name
+    <input type="text" name="firstName" value="{{userDoc.0.firstName}}">
+  </label>
+
+  <label> Description
+    <input type="text" name="description" value="{{userDoc.0.description}}">
+  </label>
+
+  <button>Edit</button>
+</form>
