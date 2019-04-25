@@ -1,6 +1,7 @@
 <h2>Add someone....</h2>
 
-<form action="/process-add" method="post">
+{{!-- you need to have enctype="multipart/form-data" so the form know you're trying to upload a file  --}}
+<form action="/process-add" method="post" enctype="multipart/form-data">
 
   <label> First Name
     <input type="text" name="firstName" placeholder="first name">
@@ -8,6 +9,12 @@
 
   <label> Description
     <input type="text" name="description" placeholder="tell us something nice">
+  </label>
+
+  <label> Avatar
+    {{!-- the name comes from the index.js file --}}
+    {{!-- type file is needed for it to work --}}
+    <input type="file" name="avatarUpload">
   </label>
   <button>Add</button>
 </form>

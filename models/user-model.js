@@ -6,6 +6,10 @@ const userSchema = new Schema(
   {
     firstName: { type: String },
     description: { type: String },
+    avatar: {
+      type: String,
+      default: "https://media.giphy.com/media/QvvtwToKIUUpWXDPK6/giphy.gif"
+    }
 
   },
   { timestamps: true }

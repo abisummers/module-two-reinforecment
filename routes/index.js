@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require("../models/user-model")
-
+const fileUpload = require("../config/fileUpload")
 /* GET home page */
 router.get('/', (req, res, next) => {
   res.render('index');
@@ -37,19 +37,24 @@ router.get("/add", (req, res, next) => {
   res.render("add.hbs")
 })
 
-router.post("/process-add", (req, res, next) => {
-  const { firstName, description } = req.body
-  console.log(firstName, description);
+router.post("/process-add",
+  fileUpload.single("avatarUpload"),
+  (req, res, next) => {
+    const { firstName, description } = req.body
+    console.log(firstName, description);
 
-  User.create(
-    { firstName, description },
-  )
-    .then(userDoc => {
-      console.log(userDoc)
-      res.redirect("/names")
-    })
-    .catch(err => next(err))
-})
+    // the secure_url comes from cloudinary 
+    const avatar = req.file.secure_url
+
+    User.create(
+      { firstName, description, avatar },
+    )
+      .then(userDoc => {
+        console.log(userDoc)
+        res.redirect("/names")
+      })
+      .catch(err => next(err))
+  })
 
 // --------- UPDATE USER ----------
 
