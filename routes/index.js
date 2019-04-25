@@ -76,5 +76,16 @@ router.post("/process-edit/:id", (req, res, next) => {
     .catch(err => next(err))
 })
 
+//----------- DELETE A USER ------------
 
+router.get("/delete/:id", (req, res, next) => {
+
+  User.findByIdAndRemove(req.params.id)
+    .then(profileDoc => {
+      console.log("user delted");
+
+      res.redirect("/");
+    })
+    .catch(err => next(err));
+})
 module.exports = router;
